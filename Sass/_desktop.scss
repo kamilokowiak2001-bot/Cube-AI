@@ -1,16 +1,16 @@
 @media (min-width: 992px) {
-    .nav {
-        padding: 2.5em 4em;
+	.nav {
+		padding: 2.5em 4em;
 
-        &-desktop {
-            display: flex;
-            align-items: center;
-            margin-left: auto;
-            gap: 20px;
-        }
+		&__desktop {
+			display: flex;
+			align-items: center;
+			margin-left: auto;
+			gap: 20px;
+		}
 
-        &-mobile {
-            display: none;
-        }
-    }
+		&__mobile {
+			display: none;
+		}
+	}
 }
