@@ -17,15 +17,28 @@ body {
 
 .wrapper {
   margin: 0 auto;
-  max-width: 1200px;
+  max-width: 1400px;
   width: 100%;
+}
+
+.company {
+  margin-left: 1.5em;
+}
+.company__name {
+  font-size: clamp(2rem, 2vw + 1rem, 2.5rem);
+  font-weight: 700;
+  margin-bottom: 0.2em;
+}
+.company__slogan {
+  font-size: clamp(1.2rem, 2vw + 1rem, 1.4rem);
+  color: rgba(10, 10, 10, 0.6588235294);
 }
 
 .nav {
   display: flex;
   align-items: center;
   margin: 4em auto;
-  max-width: 1200px;
+  max-width: 1400px;
   width: 90%;
   background-color: #fff;
   padding: 2em;
@@ -40,11 +53,12 @@ body {
   display: none;
 }
 .nav__link {
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   font-weight: 400;
   text-decoration: none;
   color: #0a0a0a;
   transition: color 0.3s;
+  margin-right: 1em;
 }
 .nav__link:hover {
   color: royalblue;
@@ -75,11 +89,11 @@ body {
 }
 
 .main-btn {
-  margin-left: 1em;
   padding: 0.8em 2em;
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   font-weight: 600;
   background-color: royalblue;
+  text-decoration: none;
   border: transparent;
   color: #fff;
   border-radius: 6px;
@@ -87,6 +101,84 @@ body {
 }
 .main-btn:hover {
   background-color: rgb(79, 119, 239);
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  margin: 4em auto;
+  max-width: 1400px;
+  width: 90%;
+}
+.hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  background-color: rgba(99, 161, 241, 0.329);
+  color: #0a0a0a;
+  font-size: 1.4rem;
+  padding: 0.6em 1.2em;
+  border-radius: 8px;
+  margin-bottom: 1em;
+}
+.hero__img {
+  order: 1;
+}
+.hero__img img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 15px;
+}
+.hero__txt {
+  background-color: #fff;
+  border-radius: 15px;
+  padding: 4em 2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2em;
+  order: 2;
+}
+@media (min-width: 992px) {
+  .hero__txt {
+    padding: 5em 4em;
+  }
+}
+.hero__title {
+  font-size: clamp(4rem, 2vw + 1rem, 6.4rem);
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 0.2em;
+}
+.hero__desc {
+  font-size: clamp(1.8rem, 2vw + 1rem, 2rem);
+  line-height: 1.6;
+  color: rgba(10, 10, 10, 0.7137254902);
+  margin-bottom: 0.5em;
+}
+@media (min-width: 992px) {
+  .hero {
+    flex-direction: row;
+    gap: 2em;
+  }
+  .hero__txt, .hero__img {
+    order: 0;
+    flex: 1;
+  }
+  .hero__img {
+    aspect-ratio: 1/1;
+  }
+  .hero__img img {
+    height: 100%;
+    -o-object-fit: cover;
+       object-fit: cover;
+  }
+  .hero__txt {
+    padding: 4em 6em;
+  }
 }
 
 @media (min-width: 992px) {
