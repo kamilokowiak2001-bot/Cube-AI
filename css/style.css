@@ -1,3 +1,4 @@
+@charset "UTF-8";
 *,
 *::after,
 *::before {
@@ -16,9 +17,10 @@ body {
 }
 
 .wrapper {
-  margin: 0 auto;
+  margin: 4em auto;
   max-width: 1400px;
   width: 100%;
+  border-radius: 15px;
 }
 
 .company {
@@ -148,7 +150,7 @@ body {
   }
 }
 .hero__title {
-  font-size: clamp(4rem, 2vw + 1rem, 6.4rem);
+  font-size: clamp(4rem, 2.4rem + 2.08vw, 6.4rem);
   font-weight: 700;
   line-height: 1.15;
   margin-bottom: 0.2em;
@@ -181,17 +183,97 @@ body {
   }
 }
 
-@media (min-width: 992px) {
-  .nav {
-    padding: 2.5em 4em;
+.clients-section {
+  padding: 4rem 0;
+  border-top: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.clients-section p.label {
+  text-align: center;
+  font-size: 1.8rem;
+  color: #0a0a0a;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.logo-item img {
+  height: 40px;
+  width: auto;
+  filter: grayscale(100%);
+  opacity: 0.6;
+  display: block;
+}
+
+/* ── DESKTOP: statyczny flex-grid ── */
+.logos-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 40px 56px;
+  padding: 4em 4rem 2rem 4rem;
+}
+
+.logos-marquee {
+  display: contents;
+}
+
+.logos-track {
+  display: contents;
+}
+
+/* ── MOBILE: karuzela z CSS loop ── */
+@media (max-width: 768px) {
+  .logos-row {
+    padding-top: 4em;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    /* fade-out na krawędziach */
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
   }
-  .nav__desktop {
+  .logos-marquee {
     display: flex;
     align-items: center;
-    margin-left: auto;
-    gap: 20px;
+    width: -moz-max-content;
+    width: max-content;
+    animation: marquee 18s linear infinite;
+    will-change: transform;
   }
-  .nav__mobile {
+  .logos-track {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+    padding-right: 48px; /* odstęp na końcu tracka = gap między ostatnim a pierwszym */
+    flex-shrink: 0;
+  }
+  .logos-track:last-child {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    animation-delay: -9s; /* połowa czasu = idealny offset */
+  }
+}
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+@media (min-width: 992px) {
+  .logos-track:last-child {
     display: none;
+  }
+}
+@media (max-width: 992px) {
+  .wrapper {
+    width: 90%;
   }
 }/*# sourceMappingURL=style.css.map */
