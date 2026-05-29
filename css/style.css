@@ -15,6 +15,10 @@ body {
   font-family: "Inter", sans-serif;
 }
 
+body.no-scroll {
+  overflow: hidden;
+}
+
 .wrapper {
   margin: 4em auto;
   max-width: 1400px;
@@ -23,16 +27,16 @@ body {
 }
 
 .company {
-  margin-left: 1.5em;
+  margin-left: 2em;
 }
 .company__name {
-  font-size: clamp(2rem, 2vw + 1rem, 2.5rem);
+  font-size: 2rem;
   font-weight: 700;
-  margin-bottom: 0.2em;
+  margin-bottom: 0.5em;
 }
 .company__slogan {
-  font-size: clamp(1.2rem, 2vw + 1rem, 1.4rem);
-  color: rgba(10, 10, 10, 0.6588235294);
+  font-size: 1.4rem;
+  color: #6b6b6b;
 }
 
 .nav {
@@ -42,7 +46,7 @@ body {
   max-width: 1400px;
   width: 90%;
   background-color: #fff;
-  padding: 2em;
+  padding: 2em 2em;
   border-radius: 15px;
 }
 .nav__mobile {
@@ -84,6 +88,7 @@ body {
   background-color: #e1e1e1;
   transform: translateX(100%);
   transition: transform 0.3s;
+  z-index: 1000;
 }
 .offcanvas--active {
   transform: translateX(0);
@@ -135,18 +140,13 @@ body {
 .hero__txt {
   background-color: #fff;
   border-radius: 15px;
-  padding: 4em 2em;
+  padding: 4em 4em;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
   gap: 2em;
   order: 2;
-}
-@media (min-width: 992px) {
-  .hero__txt {
-    padding: 5em 4em;
-  }
 }
 .hero__title {
   font-size: clamp(3.6rem, 2.8rem + 2.25vw, 6rem);
@@ -155,31 +155,10 @@ body {
   margin-bottom: 0.2em;
 }
 .hero__desc {
-  font-size: 2rem;
+  font-size: 1.8rem;
   line-height: 1.6;
   color: rgba(10, 10, 10, 0.7137254902);
   margin-bottom: 0.5em;
-}
-@media (min-width: 992px) {
-  .hero {
-    flex-direction: row;
-    gap: 2em;
-  }
-  .hero__txt, .hero__img {
-    order: 0;
-    flex: 1;
-  }
-  .hero__img {
-    aspect-ratio: 1/1;
-  }
-  .hero__img img {
-    height: 100%;
-    -o-object-fit: cover;
-       object-fit: cover;
-  }
-  .hero__txt {
-    padding: 4em 6em;
-  }
 }
 
 .clients {
@@ -223,7 +202,110 @@ body {
   opacity: 0.6;
   display: block;
 }
+
+.problems {
+  display: flex;
+  flex-direction: column;
+  gap: 3em;
+  background-color: #fff;
+  padding: 4em 2em;
+  border-radius: 15px;
+}
+.problems__img {
+  order: -1;
+}
+.problems__img img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 15px;
+}
+.problems__content {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+.problems__heading {
+  font-size: clamp(2.8rem, 2.1rem + 1.88vw, 4.8rem);
+  font-weight: 600;
+  line-height: 1;
+  margin-bottom: 1em;
+}
+.problems__cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5em;
+}
+@media (min-width: 600px) {
+  .problems__cards {
+    grid-template-columns: 1fr 1fr;
+  }
+}
 @media (min-width: 992px) {
+  .problems {
+    flex-direction: row;
+    gap: 4em;
+    padding: 5em 4em;
+  }
+  .problems__content, .problems__img {
+    flex: 1;
+  }
+  .problems__img {
+    order: 0;
+  }
+  .problems__img img {
+    height: 100%;
+    -o-object-fit: cover;
+       object-fit: cover;
+  }
+}
+
+.card {
+  background-color: #f0f0f0;
+  padding: 2em;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+.card__icon {
+  width: 48px;
+  height: 48px;
+  background-color: #c5d4f0;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.card__title {
+  font-size: clamp(1.8rem, 1.6rem + 0.56vw, 2.4rem);
+  font-weight: 700;
+  margin: 0;
+}
+.card__desc {
+  font-size: 1.6rem;
+  line-height: 1.5;
+  color: #555;
+  margin: 0;
+}
+
+@keyframes logos-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .logos__marquee {
+    animation: none;
+  }
+}
+@media (min-width: 992px) {
+  .nav {
+    padding: 2em 4em;
+  }
   .logos {
     overflow: visible;
     padding: 4em 4rem 2rem;
@@ -242,19 +324,24 @@ body {
   .logos__track:nth-child(2) {
     display: none;
   }
-}
-
-@keyframes logos-scroll {
-  from {
-    transform: translateX(0);
+  .hero {
+    flex-direction: row;
+    gap: 2em;
   }
-  to {
-    transform: translateX(-50%);
+  .hero__txt, .hero__img {
+    order: 0;
+    flex: 1;
   }
-}
-@media (prefers-reduced-motion: reduce) {
-  .logos__marquee {
-    animation: none;
+  .hero__img {
+    aspect-ratio: 1/1;
+  }
+  .hero__img img {
+    height: 100%;
+    -o-object-fit: cover;
+       object-fit: cover;
+  }
+  .hero__txt {
+    padding: 4em 6em;
   }
 }
 @media (max-width: 992px) {

@@ -19,6 +19,10 @@ body {
 	font-family: 'Inter', sans-serif;
 }
 
+body.no-scroll {
+	overflow: hidden;
+}
+
 .wrapper {
 	margin: 4em auto;
 	max-width: 1400px;
@@ -27,17 +31,17 @@ body {
 }
 
 .company {
-	margin-left: 1.5em;
+	margin-left: 2em;
 
 	&__name {
-		font-size: clamp(2rem, 2vw + 1rem, 2.5rem);
+		font-size: $h6;
 		font-weight: 700;
-		margin-bottom: 0.2em;
+		margin-bottom: 0.5em;
 	}
 
 	&__slogan {
-		font-size: clamp(1.2rem, 2vw + 1rem, 1.4rem);
-		color: #0a0a0aa8;
+		font-size: $overline;
+		color: $text;
 	}
 }
 
@@ -48,7 +52,7 @@ body {
 	max-width: 1400px;
 	width: 90%;
 	background-color: #fff;
-	padding: 2em;
+	padding: 2em 2em;
 	border-radius: 15px;
 
 	&__mobile {
@@ -62,7 +66,7 @@ body {
 	}
 
 	&__link {
-		font-size: 1.8rem;
+		font-size: $lead;
 		font-weight: 400;
 		text-decoration: none;
 		color: #0a0a0a;
@@ -97,6 +101,7 @@ body {
 	background-color: #e1e1e1;
 	transform: translateX(100%);
 	transition: transform 0.3s;
+	z-index: 1000;
 
 	&--active {
 		transform: translateX(0);
@@ -105,7 +110,7 @@ body {
 
 .main-btn {
 	padding: 0.8em 2em;
-	font-size: 1.8rem;
+	font-size: $lead;
 	font-weight: 600;
 	background-color: royalblue;
 	text-decoration: none;
@@ -134,7 +139,7 @@ body {
 		align-items: center;
 		gap: 0.5em;
 		background-color: rgba(99, 161, 241, 0.329);
-		color: #0a0a0a;
+		color: $heading;
 		font-size: $overline;
 		padding: 0.6em 1.2em;
 		border-radius: 8px;
@@ -155,17 +160,13 @@ body {
 	&__txt {
 		background-color: #fff;
 		border-radius: 15px;
-		padding: 4em 2em;
+		padding: 4em 4em;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: flex-start;
 		gap: 2em;
 		order: 2;
-
-		@media (min-width: 992px) {
-			padding: 5em 4em;
-		}
 	}
 
 	&__title {
@@ -176,34 +177,10 @@ body {
 	}
 
 	&__desc {
-		font-size: $h6;
+		font-size: $lead;
 		line-height: 1.6;
 		color: #0a0a0ab6;
 		margin-bottom: 0.5em;
-	}
-
-	@media (min-width: 992px) {
-		flex-direction: row;
-		gap: 2em;
-
-		&__txt,
-		&__img {
-			order: 0;
-			flex: 1;
-		}
-
-		&__img {
-			aspect-ratio: 1 / 1;
-
-			img {
-				height: 100%;
-				object-fit: cover;
-			}
-		}
-
-		&__txt {
-			padding: 4em 6em;
-		}
 	}
 }
 
@@ -249,8 +226,132 @@ body {
 		opacity: 0.6;
 		display: block;
 	}
+}
+
+// PROBLEMS
+
+.problems {
+	display: flex;
+	flex-direction: column;
+	gap: 3em;
+	background-color: #fff;
+	padding: 4em 2em;
+	border-radius: 15px;
+
+	&__img {
+		order: -1;
+
+		img {
+			width: 100%;
+			height: auto;
+			display: block;
+			border-radius: 15px;
+		}
+	}
+
+	&__content {
+		display: flex;
+		flex-direction: column;
+		gap: 2em;
+	}
+
+	&__heading {
+		font-size: $h2;
+		font-weight: 600;
+		line-height: 1;
+		margin-bottom: 1em;
+	}
+
+	&__cards {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 1.5em;
+
+		@media (min-width: 600px) {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
 
 	@media (min-width: 992px) {
+		flex-direction: row;
+		gap: 4em;
+		padding: 5em 4em;
+
+		&__content,
+		&__img {
+			flex: 1;
+		}
+
+		&__img {
+			order: 0;
+
+			img {
+				height: 100%;
+				object-fit: cover;
+			}
+		}
+	}
+}
+
+.card {
+	background-color: #f0f0f0;
+	padding: 2em;
+	border-radius: 12px;
+	display: flex;
+	flex-direction: column;
+	gap: 1em;
+
+	&__icon {
+		width: 48px;
+		height: 48px;
+		background-color: #c5d4f0;
+		border-radius: 8px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	&__title {
+		font-size: $h5;
+		font-weight: 700;
+		margin: 0;
+	}
+
+	&__desc {
+		font-size: $body;
+		line-height: 1.5;
+		color: #555;
+		margin: 0;
+	}
+}
+
+// ANIMATION
+
+@keyframes logos-scroll {
+	from {
+		transform: translateX(0);
+	}
+	to {
+		transform: translateX(-50%);
+	}
+}
+
+/////// --------------------------------------
+//MEDIA
+///////---------------------------------------
+
+@media (prefers-reduced-motion: reduce) {
+	.logos__marquee {
+		animation: none;
+	}
+}
+
+@media (min-width: 992px) {
+	.nav {
+		padding: 2em 4em;
+	}
+
+	.logos {
 		overflow: visible;
 		padding: 4em 4rem 2rem;
 
@@ -271,20 +372,29 @@ body {
 			}
 		}
 	}
-}
 
-@keyframes logos-scroll {
-	from {
-		transform: translateX(0);
-	}
-	to {
-		transform: translateX(-50%);
-	}
-}
+	.hero {
+		flex-direction: row;
+		gap: 2em;
 
-@media (prefers-reduced-motion: reduce) {
-	.logos__marquee {
-		animation: none;
+		&__txt,
+		&__img {
+			order: 0;
+			flex: 1;
+		}
+
+		&__img {
+			aspect-ratio: 1 / 1;
+
+			img {
+				height: 100%;
+				object-fit: cover;
+			}
+		}
+
+		&__txt {
+			padding: 4em 6em;
+		}
 	}
 }
 
